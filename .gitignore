@@ -1,0 +1,14 @@
+__pycache__/ 
+*.pyc 
+.DS_Store 
+venv/ 
+.pytest_cache/ 
+*.pdf
+Buscador empleo/
+Claude course - Nikco Saraev/
+Claude MD/
+files/
+GitHub/
+Prompts/
+Python/
+Skills/

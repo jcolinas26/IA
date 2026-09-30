@@ -25,7 +25,13 @@ def calculate(expression):
 def search_notes(query):
     # look through a hardcoded dict
     notes = {"wifi password": "hunter2", "meeting": "3pm Thursday"}
-    return notes.get(query, "No note found for that.")
+    q = query.lower()
+    hits = [
+        f"{k}: {v}"
+        for k, v in notes.items()
+        if q in k.lower() or k.lower() in q or q in v.lower()
+    ]
+    return "\n".join(hits) if hits else "No note found for that."
 
 
 # 2. The tool DEFINITION — what Claude reads to decide when/how to use it
@@ -98,6 +104,7 @@ while True:  # OUTER: one iteration per user turn
                     elif block.name == "calculate":
                         output = calculate(block.input["expression"])
                     elif block.name == "search_notes":
+                        # print("DEBUG query:", repr(block.input["query"]))  # temporary
                         output = search_notes(block.input["query"])
                     results.append(
                         {
